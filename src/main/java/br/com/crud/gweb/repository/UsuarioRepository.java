@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @date: 23/11/18
  */
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
+    Usuario findAById(Integer id);
 }

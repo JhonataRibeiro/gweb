@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
+
 /**
  * @author: Jhonata Ribeiro
  * @date: 23/11/18
@@ -33,7 +35,7 @@ public class UsuarioController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity deletar(@RequestParam Usuario usuario){
-        return new ResponseEntity(usuarioService.exlcuirUsuario(usuario), HttpStatus.OK);
+    public ResponseEntity deletar(@PathParam("id") Integer id){
+        return new ResponseEntity(usuarioService.exlcuirUsuario(id), HttpStatus.OK);
     }
 }

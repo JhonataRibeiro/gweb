@@ -31,8 +31,13 @@ public class UsuarioService {
         return usuarioRepository.save(usuario);
     }
 
-    public Usuario exlcuirUsuario(Usuario usuario) {
+    public Usuario exlcuirUsuario(Integer id) {
+        Usuario usuario = obterUsuarioPeloId(id);
         usuarioRepository.delete(usuario);
         return null;
+    }
+
+    public Usuario obterUsuarioPeloId(Integer id){
+        return usuarioRepository.findAById(id);
     }
 }

@@ -26,6 +26,9 @@ public class Usuario {
     @Column
     private String nome;
 
+    @Column
+    private Integer idade;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Document> documents  = new ArrayList<>();
 
