@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column
     private TipoDocumento tipo;

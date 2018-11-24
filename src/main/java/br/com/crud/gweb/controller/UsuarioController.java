@@ -35,7 +35,7 @@ public class UsuarioController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity deletar(@PathParam("id") Integer id){
+    public ResponseEntity deletar(@PathVariable("id") Long id){
         return new ResponseEntity(usuarioService.exlcuirUsuario(id), HttpStatus.OK);
     }
 }
