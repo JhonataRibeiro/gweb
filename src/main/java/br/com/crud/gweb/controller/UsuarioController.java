@@ -44,4 +44,9 @@ public class UsuarioController {
     public ResponseEntity deletar(@PathVariable("id") Long id){
         return new ResponseEntity(usuarioService.exlcuirUsuario(id), HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/{id}/documento/{idDocumento}", method = RequestMethod.DELETE)
+    public ResponseEntity deletar(@PathVariable("id") Long id, @PathVariable("idDocumento") Long idDocumento){
+        return new ResponseEntity(usuarioService.excluirDocumento(id, idDocumento), HttpStatus.OK);
+    }
 }

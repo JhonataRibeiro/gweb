@@ -2,6 +2,7 @@ package br.com.crud.gweb.service;
 
 import br.com.crud.gweb.model.Documento;
 import br.com.crud.gweb.model.Usuario;
+import br.com.crud.gweb.repository.DocumentoRepository;
 import br.com.crud.gweb.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ import java.util.stream.Collectors;
 public class UsuarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
+
+    @Autowired
+    DocumentoService documentoService;
 
     List<Usuario> usuarios = new ArrayList<>();
 
@@ -49,6 +53,16 @@ public class UsuarioService {
         return usuario.getDocumentos().parallelStream().filter(documento -> {
             return documento.getDataCriacao().after(dataInicio) && documento.getDataCriacao().before(dataFim);
         }).collect(Collectors.toList());
+    }
+
+    public Usuario excluirDocumento(Long idUsuario, Long idDocumento){
+        Usuario usuario = usuarioRepository.findAById(idUsuario);
+        usuario.setDocumentos(usuario.getDocumentos().parallelStream().filter(documento -> documento.getId() != idDocumento).collect(Collectors.toList()));
+        documentoService.excluirDocumento(idDocumento);
+        return usuarioRepository.save(usuario);
+
+
+
     }
 
 }
