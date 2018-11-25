@@ -21,32 +21,58 @@ public class UsuarioController {
     UsuarioService usuarioService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity listar(){
-        return new ResponseEntity(usuarioService.obterUsuarios(), HttpStatus.OK);
+    public ResponseEntity listar() {
+        try {
+            return new ResponseEntity(usuarioService.obterUsuarios(), HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    @RequestMapping(value="/{id}/documentos", method = RequestMethod.GET)
-    public ResponseEntity obteResponseEntity (@PathVariable("id") Long id, @PathParam("dataInicio") Date dataInicio, @PathParam("dataInicio") Date dataFim){
-        return new ResponseEntity(usuarioService.obterDocumentsPorRangeData(id, dataInicio, dataFim), HttpStatus.OK);
+    @RequestMapping(value = "/{id}/documentos", method = RequestMethod.GET)
+    public ResponseEntity obteResponseEntity(@PathVariable("id") Long id, @PathParam("dataInicio") Date dataInicio, @PathParam("dataInicio") Date dataFim) {
+        try {
+            return new ResponseEntity(usuarioService.obterDocumentsPorRangeData(id, dataInicio, dataFim), HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity inserir(@RequestBody Usuario usuario){
-        return new ResponseEntity(usuarioService.salvarUsuario(usuario), HttpStatus.OK);
+    public ResponseEntity inserir(@RequestBody Usuario usuario) {
+        try {
+            return new ResponseEntity(usuarioService.salvarUsuario(usuario), HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity editar(@RequestBody Usuario usuario){
-        return new ResponseEntity(usuarioService.editarUsuario(usuario), HttpStatus.OK);
+    public ResponseEntity editar(@RequestBody Usuario usuario) {
+        try {
+            return new ResponseEntity(usuarioService.editarUsuario(usuario), HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity deletar(@PathVariable("id") Long id){
-        return new ResponseEntity(usuarioService.exlcuirUsuario(id), HttpStatus.OK);
+    public ResponseEntity deletar(@PathVariable("id") Long id) {
+        try {
+            return new ResponseEntity(usuarioService.exlcuirUsuario(id), HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @RequestMapping(value = "/{id}/documento/{idDocumento}", method = RequestMethod.DELETE)
-    public ResponseEntity deletar(@PathVariable("id") Long id, @PathVariable("idDocumento") Long idDocumento){
-        return new ResponseEntity(usuarioService.excluirDocumento(id, idDocumento), HttpStatus.OK);
+    public ResponseEntity deletar(@PathVariable("id") Long id, @PathVariable("idDocumento") Long idDocumento) {
+        try {
+            return new ResponseEntity(usuarioService.excluirDocumento(id, idDocumento), HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
     }
 }

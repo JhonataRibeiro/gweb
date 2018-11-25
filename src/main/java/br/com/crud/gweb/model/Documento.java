@@ -22,6 +22,9 @@ public class Documento {
     private TipoDocumento tipo;
 
     @Column
+    private Date validade;
+
+    @Column
     private Integer numeroDocumento;
 
     @Column

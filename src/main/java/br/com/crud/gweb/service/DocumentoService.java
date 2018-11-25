@@ -14,7 +14,7 @@ public class DocumentoService {
     @Autowired
     DocumentoRepository documentoRepository;
 
-    protected void excluirDocumento(Long idDocumento){
+    protected void excluirDocumento(Long idDocumento) {
         documentoRepository.delete(documentoRepository.findById(idDocumento));
     }
 }

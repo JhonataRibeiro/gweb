@@ -1,9 +1,10 @@
 package br.com.crud.gweb.service;
 
+import br.com.crud.gweb.dto.UsuarioDTO;
 import br.com.crud.gweb.model.Documento;
 import br.com.crud.gweb.model.Usuario;
-import br.com.crud.gweb.repository.DocumentoRepository;
 import br.com.crud.gweb.repository.UsuarioRepository;
+import br.com.crud.gweb.utils.DTOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
  */
 @Service
 public class UsuarioService {
+
     @Autowired
     UsuarioRepository usuarioRepository;
 
@@ -26,8 +28,13 @@ public class UsuarioService {
 
     List<Usuario> usuarios = new ArrayList<>();
 
-    public List<Usuario> obterUsuarios() {
-        return usuarioRepository.findAll();
+    public List<UsuarioDTO> obterUsuarios() {
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
+        usuarios.parallelStream().forEach(usuario -> {
+           usuarioDTOS.add((UsuarioDTO) DTOUtils.convertClassAToClassBDTO(Usuario.class, UsuarioDTO.class, usuario));
+        });
+        return  usuarioDTOS;
     }
 
     public Usuario salvarUsuario(Usuario usuario){
@@ -51,7 +58,7 @@ public class UsuarioService {
     public List<Documento> obterDocumentsPorRangeData(Long idUsuario, Date dataInicio, Date dataFim){
         Usuario usuario = usuarioRepository.findAById(idUsuario);
         return usuario.getDocumentos().parallelStream().filter(documento -> {
-            return documento.getDataCriacao().after(dataInicio) && documento.getDataCriacao().before(dataFim);
+            return documento.getValidade().after(dataInicio) || documento.getValidade().equals(dataInicio)  && documento.getValidade().before(dataFim) || documento.getValidade().equals(dataFim);
         }).collect(Collectors.toList());
     }
 
