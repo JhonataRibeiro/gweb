@@ -55,8 +55,13 @@
 			<version>1.18.4</version>
 			<scope>provided</scope>
 		</dependency>
+        <dependency>
+            <groupId>br.com.crud</groupId>
+            <artifactId>gweb</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>

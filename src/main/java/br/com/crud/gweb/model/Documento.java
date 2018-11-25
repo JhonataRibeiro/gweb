@@ -1,13 +1,10 @@
 package br.com.crud.gweb.model;
 
-import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author: Jhonata Ribeiro
@@ -16,28 +13,22 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class Usuario {
+public class Documento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
-    private String nome;
+    private TipoDocumento tipo;
 
     @Column
-    private Integer idade;
+    private Integer numeroDocumento;
 
     @Column
-    private Genero genero;
+    private String observacao;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Documento> documentos = new ArrayList<>();
-
-    @CreatedDate
     private Date dataCriacao;
 
-    @LastModifiedDate
     private Date dataAtualizacao;
 
     @PreUpdate
@@ -52,7 +43,4 @@ public class Usuario {
         dataAtualizacao = atual;
     }
 
-    public Usuario(String nome) {
-        this.nome = nome;
-    }
 }

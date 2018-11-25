@@ -1,12 +1,15 @@
 package br.com.crud.gweb.service;
 
+import br.com.crud.gweb.model.Documento;
 import br.com.crud.gweb.model.Usuario;
 import br.com.crud.gweb.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author: Jhonata Ribeiro
@@ -40,4 +43,12 @@ public class UsuarioService {
     public Usuario obterUsuarioPeloId(Long id){
         return usuarioRepository.findAById(id);
     }
+
+    public List<Documento> obterDocumentsPorRangeData(Long idUsuario, Date dataInicio, Date dataFim){
+        Usuario usuario = usuarioRepository.findAById(idUsuario);
+        return usuario.getDocumentos().parallelStream().filter(documento -> {
+            return documento.getDataCriacao().after(dataInicio) && documento.getDataCriacao().before(dataFim);
+        }).collect(Collectors.toList());
+    }
+
 }

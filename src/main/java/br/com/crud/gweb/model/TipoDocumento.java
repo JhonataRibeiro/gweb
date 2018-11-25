@@ -5,7 +5,7 @@ package br.com.crud.gweb.model;
  * @date: 23/11/18
  */
 public enum TipoDocumento {
-    IDENTIDADE("Identidade"), CARTEIRA_TRABALHO("Carteira de trabalho");
+    IDENTIDADE("Identidade"), CARTEIRA_TRABALHO("Carteira de trabalho"), PASSAPORTE("Passaporte"), CNH("Carteira nacional de habilitação");
 
     public String valorDoEnum;
 
