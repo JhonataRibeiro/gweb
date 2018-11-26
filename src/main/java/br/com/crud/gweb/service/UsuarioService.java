@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -28,8 +29,17 @@ public class UsuarioService {
 
     List<Usuario> usuarios = new ArrayList<>();
 
-    public List<UsuarioDTO> obterUsuarios() {
-        List<Usuario> usuarios = usuarioRepository.findAll();
+    public List<UsuarioDTO> obterUsuarios(String argumentoPesquisa) {
+
+        List<Usuario> usuarios = new ArrayList<>();
+
+        if(Objects.nonNull(argumentoPesquisa)){
+            usuarios = usuarioRepository.findByNomeContainingIgnoreCase(argumentoPesquisa);
+        }else{
+            usuarios = usuarioRepository.findAll();
+        }
+
+        //Aqui eu extrairia para outro metodo, mas o tempo.. 
         List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
         usuarios.parallelStream().forEach(usuario -> {
            usuarioDTOS.add((UsuarioDTO) DTOUtils.convertClassAToClassBDTO(Usuario.class, UsuarioDTO.class, usuario));
