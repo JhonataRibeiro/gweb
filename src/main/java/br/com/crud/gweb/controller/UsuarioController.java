@@ -21,9 +21,9 @@ public class UsuarioController {
     UsuarioService usuarioService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity listar() {
+    public ResponseEntity listar(@PathParam("argumentopesquisa") String argumentopesquisa) {
         try {
-            return new ResponseEntity<>(usuarioService.obterUsuarios(), HttpStatus.OK);
+            return new ResponseEntity<>(usuarioService.obterUsuarios(argumentopesquisa), HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

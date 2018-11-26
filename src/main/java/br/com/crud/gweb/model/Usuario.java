@@ -34,6 +34,11 @@ public class Usuario {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Documento> documentos = new ArrayList<>();
 
+    @Transient
+    private boolean temDocumentos(){
+        return this.documentos.size() > 0;
+    }
+
     @CreatedDate
     private Date dataCriacao;
 
