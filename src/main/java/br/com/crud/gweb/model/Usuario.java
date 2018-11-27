@@ -31,7 +31,7 @@ public class Usuario {
     @Column
     private Genero genero;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Documento> documentos = new ArrayList<>();
 
     @Transient
