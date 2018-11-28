@@ -1,6 +1,7 @@
 package br.com.crud.gweb.dto;
 
 import br.com.crud.gweb.model.Documento;
+import br.com.crud.gweb.model.Endereco;
 import br.com.crud.gweb.model.Genero;
 import br.com.crud.gweb.model.Usuario;
 import lombok.AllArgsConstructor;
@@ -34,6 +35,8 @@ public class UsuarioDTO {
     @Column
     private Genero genero;
 
+    private Endereco endereco;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Documento> documentos = new ArrayList<>();
 
@@ -47,5 +50,6 @@ public class UsuarioDTO {
         this.genero = usuario.getGenero();
         this.documentos = usuario.getDocumentos();
         this.dataCriacao = usuario.getDataCriacao();
+        this.endereco = usuario.getEndereco();
     }
 }

@@ -3,6 +3,7 @@ package br.com.crud.gweb.service;
 import br.com.crud.gweb.dto.UsuarioDTO;
 import br.com.crud.gweb.model.Documento;
 import br.com.crud.gweb.model.Usuario;
+import br.com.crud.gweb.repository.EnderecoRepository;
 import br.com.crud.gweb.repository.UsuarioRepository;
 import br.com.crud.gweb.utils.DTOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class UsuarioService {
     @Autowired
     DocumentoService documentoService;
 
+    @Autowired
+    EnderecoRepository enderecoRepository;
+
     List<Usuario> usuarios = new ArrayList<>();
 
     public List<UsuarioDTO> obterUsuarios(String argumentoPesquisa) {
@@ -39,7 +43,6 @@ public class UsuarioService {
             usuarios = usuarioRepository.findAll();
         }
 
-        //Aqui eu extrairia para outro metodo, mas o tempo.. 
         List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
         usuarios.parallelStream().forEach(usuario -> {
            usuarioDTOS.add((UsuarioDTO) DTOUtils.convertClassAToClassBDTO(Usuario.class, UsuarioDTO.class, usuario));
@@ -77,9 +80,6 @@ public class UsuarioService {
         usuario.setDocumentos(usuario.getDocumentos().parallelStream().filter(documento -> documento.getId() != idDocumento).collect(Collectors.toList()));
         documentoService.excluirDocumento(idDocumento);
         return usuarioRepository.save(usuario);
-
-
-
     }
 
 }

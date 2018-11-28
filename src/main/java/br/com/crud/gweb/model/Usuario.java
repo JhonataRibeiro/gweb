@@ -1,6 +1,8 @@
 package br.com.crud.gweb.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -31,7 +33,11 @@ public class Usuario {
     @Column
     private Genero genero;
 
-    @OneToMany( fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_endereco")
+    private Endereco endereco;
+
+    @OneToMany( cascade = CascadeType.ALL)
     private List<Documento> documentos = new ArrayList<>();
 
     @Transient
