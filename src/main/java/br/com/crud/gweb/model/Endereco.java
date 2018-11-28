@@ -1,5 +1,7 @@
 package br.com.crud.gweb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,4 +22,12 @@ public class Endereco {
     private String complemento;
     private String rua;
     private int cep;
+    @OneToOne(mappedBy = "endereco")
+    @JoinColumn(name = "fk_usuario")
+    @JsonManagedReference
+    private Usuario usuario;
+
+    public void Endereco(String complemento){
+        this.complemento = complemento;
+    }
 }

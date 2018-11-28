@@ -5,6 +5,8 @@ import br.com.crud.gweb.repository.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author: Jhonata Ribeiro
  * @date: 28/11/18
@@ -17,5 +19,9 @@ public class EnderecoService {
 
     protected Endereco salvar(Endereco endereco){
         return this.enderecoRepository.save(endereco);
+    }
+
+    public List<Endereco> listar(){
+        return enderecoRepository.findAll();
     }
 }

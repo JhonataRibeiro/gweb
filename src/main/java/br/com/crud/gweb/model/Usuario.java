@@ -1,5 +1,7 @@
 package br.com.crud.gweb.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,6 +37,7 @@ public class Usuario {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_endereco")
+    @JsonBackReference
     private Endereco endereco;
 
     @OneToMany( cascade = CascadeType.ALL)
