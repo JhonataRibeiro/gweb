@@ -17,4 +17,8 @@ public class DocumentoService {
     protected void excluirDocumento(Long idDocumento) {
         documentoRepository.delete(documentoRepository.findById(idDocumento));
     }
+
+    public Object listar() {
+        return documentoRepository.findAll();
+    }
 }

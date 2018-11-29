@@ -32,7 +32,7 @@ public class Usuario {
     @Column
     private Genero genero;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     @JsonManagedReference
     private List<Documento> documentos = new ArrayList<>();
 
