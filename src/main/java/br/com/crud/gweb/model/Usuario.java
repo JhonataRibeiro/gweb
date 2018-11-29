@@ -1,5 +1,6 @@
 package br.com.crud.gweb.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -32,7 +33,7 @@ public class Usuario {
     private Genero genero;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    //Adicionando a fk_usuario, a tabela relacionamento (usuario_documento) não será criada. A id do usuário será adicionado em documento para informar o usuario daquele documento.
+    @JsonManagedReference
     private List<Documento> documentos = new ArrayList<>();
 
     @Transient

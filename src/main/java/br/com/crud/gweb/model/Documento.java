@@ -1,5 +1,6 @@
 package br.com.crud.gweb.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -36,6 +37,7 @@ public class Documento {
 
     @ManyToOne
     @JoinColumn(name = "fk_usuario")
+    @JsonBackReference
     private
     Usuario usuario;
 
