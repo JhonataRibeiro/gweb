@@ -34,6 +34,11 @@ public class Documento {
 
     private Date dataAtualizacao;
 
+    @ManyToOne
+    @JoinColumn(name = "fk_usuario")
+    private
+    Usuario usuario;
+
     @PreUpdate
     public void preUpdate() {
         dataAtualizacao = new Date();

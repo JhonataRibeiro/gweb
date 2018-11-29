@@ -31,7 +31,8 @@ public class Usuario {
     @Column
     private Genero genero;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    //Adicionando a fk_usuario, a tabela relacionamento (usuario_documento) não será criada. A id do usuário será adicionado em documento para informar o usuario daquele documento.
     private List<Documento> documentos = new ArrayList<>();
 
     @Transient

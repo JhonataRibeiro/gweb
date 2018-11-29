@@ -48,6 +48,9 @@ public class UsuarioService {
     }
 
     public Usuario salvarUsuario(Usuario usuario){
+        usuario.getDocumentos().parallelStream().forEach(documento -> {
+            documento.setUsuario(usuario);
+        });
         return usuarioRepository.save(usuario);
     }
 
