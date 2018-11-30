@@ -36,7 +36,6 @@ public class Documento {
     private Date dataAtualizacao;
 
     @ManyToOne
-//    @JoinColumn(name = "fk_usuario")
     @JsonBackReference
     private Usuario usuario;
 
