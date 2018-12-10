@@ -61,12 +61,7 @@
 			<version>1.4.6</version><!-- or latest version -->
 		</dependency>
 
-		<dependency>
-    <groupId>com.h2database</groupId>
-    <artifactId>h2</artifactId>
-    <version>1.4.197</version>
-</dependency>
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>
