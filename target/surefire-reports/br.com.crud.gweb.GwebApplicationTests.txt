@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.com.crud.gweb.GwebApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.385 s - in br.com.crud.gweb.GwebApplicationTests
