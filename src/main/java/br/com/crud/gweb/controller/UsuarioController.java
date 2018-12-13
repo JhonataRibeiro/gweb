@@ -1,10 +1,13 @@
 package br.com.crud.gweb.controller;
 
+import br.com.crud.gweb.dto.UsuarioDTO;
 import br.com.crud.gweb.model.Usuario;
 import br.com.crud.gweb.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
@@ -28,6 +31,13 @@ public class UsuarioController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @MessageMapping("/hello")
+    @SendTo("/topic/greetings")
+    public UsuarioDTO notificarCriacaoDeUsuario(Usuario usuario) {
+            return new UsuarioDTO(usuario);
+    }
+
 
     @RequestMapping(value = "/{id}/documentos", method = RequestMethod.GET)
     public ResponseEntity obteResponseEntity(@PathVariable("id") Long id, @PathParam("dataInicio") Date dataInicio, @PathParam("dataInicio") Date dataFim) {
