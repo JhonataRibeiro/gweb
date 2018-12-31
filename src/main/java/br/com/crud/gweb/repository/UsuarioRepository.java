@@ -17,4 +17,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     Usuario findAById(Long id);
 
     List<Usuario> findByNomeContainingIgnoreCase(String argumentoPesquisa);
+
+    Usuario findByUsername(String username);
+
+    boolean existsByUsername(String username);
 }
